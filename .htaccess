@@ -3,6 +3,13 @@
     <FilesMatch ".">
         Header set Cache-Control "max-age=31536000"
     </FilesMatch>
+
+    # Установка заголовка Cache-Control для кэширования на стороне клиента
+    <FilesMatch "\.(html|htm|js|css)$">
+        # Включение ETag и Last-Modified
+        FileETag MTime Size
+        Header set Cache-Control "public, max-age=86400"
+    </FilesMatch>
 </IfModule>
 
 <IfModule mod_rewrite.c>
